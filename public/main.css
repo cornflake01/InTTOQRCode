@@ -1,0 +1,512 @@
+@import url(fontawesome-all.min.css);
+
+#one section div {
+	height: 100vh;
+}
+html, body,
+div, span, h1, h2, h3, h4, h5, h6, p, b, u, i, center {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+h1 {
+	font-size: 45px;
+	color: #fff;
+	font-weight: bold;
+	line-height: 0.5;
+}
+
+h4 {
+	font-size: 30px;
+}
+
+section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+body {
+	-webkit-text-size-adjust: none;
+}
+
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+input,
+select,
+textarea {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+}
+
+/* Basic */
+
+@-ms-viewport {
+	width: device-width;
+}
+
+@media screen and (max-width: 480px) {
+
+	html,
+	body {
+		min-width: 320px;
+	}
+
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	background: #013200;
+	;
+}
+
+/* Type */
+
+body, input, select, textarea {
+	color: rgba(255, 255, 255, 0.55);
+	font-family: Poppins;
+	font-size: 12.5pt;
+	font-weight: normal;
+	line-height: 1.75;
+}
+
+@media screen and (max-width: 1680px) {
+
+	body,
+	input,
+	select,
+	textarea {
+		font-size: 13pt;
+	}
+
+}
+
+@media screen and (max-width: 1280px) {
+
+	body,
+	input,
+	select,
+	textarea {
+		font-size: 12pt;
+	}
+
+}
+
+@media screen and (max-width: 360px) {
+
+	body,
+	input,
+	select,
+	textarea {
+		font-size: 11pt;
+	}
+
+}
+
+/* Spotlights */
+
+.spotlights>section {
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-moz-flex-direction: row;
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	min-height: 22.5em;
+}
+
+body.is-ie .spotlights>section {
+	min-height: 0;
+}
+
+.spotlights>section>.image {
+	background-position: center center;
+	background-size: cover;
+	border-radius: 0;
+	display: block;
+	position: relative;
+	width: 25em;
+}
+
+.spotlights>section>.image img {
+	border-radius: 0;
+	display: block;
+}
+
+.spotlights>section>.image:before {
+	-moz-transition: opacity 1s ease;
+	-webkit-transition: opacity 1s ease;
+	-ms-transition: opacity 1s ease;
+	transition: opacity 1s ease;
+	background: #013200;
+	;
+	content: '';
+	display: block;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.spotlights>section>.content {
+	padding: 4em 5em 2em 5em;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-moz-flex-direction: column;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-moz-justify-content: center;
+	-webkit-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+	width: 50em;
+	-ms-flex: 1;
+}
+
+.spotlights>section>.content>.inner {
+	-moz-transform: translateX(0) translateY(0);
+	-webkit-transform: translateX(0) translateY(0);
+	-ms-transform: translateX(0) translateY(0);
+	transform: translateX(0) translateY(0);
+	-moz-transition: opacity 1s ease, -moz-transform 1s ease;
+	-webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+	-ms-transition: opacity 1s ease, -ms-transform 1s ease;
+	transition: opacity 1s ease, transform 1s ease;
+	opacity: 1;
+}
+
+.spotlights>section:nth-child(2) {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+.spotlights>section:nth-child(3) {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.spotlights>section.inactive>.image:before,
+body.is-preload .spotlights>section>.image:before {
+	opacity: 1;
+}
+
+.spotlights>section.inactive>.content>.inner,
+body.is-preload .spotlights>section>.content>.inner {
+	-moz-transform: translateX(-1em);
+	-webkit-transform: translateX(-1em);
+	-ms-transform: translateX(-1em);
+	transform: translateX(-1em);
+	opacity: 0;
+}
+
+@media screen and (max-width: 1680px) {
+
+	.spotlights>section>.content {
+		padding: 4em 4em 2em 4em;
+	}
+
+}
+
+@media screen and (max-width: 980px) {
+
+	.spotlights>section {
+		display: block;
+	}
+
+	.spotlights>section>.image {
+		width: 100%;
+		height: 50vh;
+	}
+
+	.spotlights>section>.content {
+		width: 100%;
+	}
+
+	.spotlights>section.inactive>.content>.inner,
+	body.is-preload .spotlights>section>.content>.inner {
+		-moz-transform: translateY(1em);
+		-webkit-transform: translateY(1em);
+		-ms-transform: translateY(1em);
+		transform: translateY(1em);
+	}
+
+}
+
+@media screen and (max-width: 736px) {
+
+	.spotlights>section>.image {
+		height: 50vh;
+		min-height: 15em;
+	}
+
+	.spotlights>section>.content {
+		padding: 3em 2em 1em 2em;
+	}
+
+}
+
+/* OVER LAY */
+
+.container {
+	display: flex;
+}
+
+.slideshow {
+	width: 50%;
+	height: 300px;
+	position: relative;
+	flex: 1 1 100%;
+	box-sizing: border-box;
+	background-image: url('/uc/slide-bg.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+.slideshow img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.8s ease-in-out;
+}
+
+.slideshow .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-size: 24px;
+	background-color: rgb(255, 255, 255, 0.7);
+	backdrop-filter: blur(0.5px);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.slideshow .overlay2 {
+	height: max-content !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+}
+
+.slideshow .overlay3 {
+	height: max-content !important;
+	position: absolute;
+	padding-bottom: 20px;
+	padding-left: 15px;
+	bottom: 0;
+	left: 0;
+	color: rgb(1, 29, 1);
+	font-size: 14px;
+
+}
+
+.slideshow .uclogo {
+	pointer-events: auto;
+	opacity: 1;
+	left: 0;
+	height: auto;
+	width: 80px;
+
+}
+
+.slideshow .overlay p {
+	margin: 0;
+}
+
+.slideshow img.active {
+	opacity: 1;
+	z-index: 1;
+}
+
+.content {
+	width: 100%;
+	padding: 20px;
+	flex: 1 1 100%;
+	box-sizing: border-box;
+	background: linear-gradient(to bottom, #013200, #1d1c1c);
+}
+
+.logo-container {
+	display: flex;
+	line-height: 1;
+}
+
+.logo {
+	width: 70px;
+	height: 70px;
+}
+
+.logo-container {
+	display: flex;
+}
+
+.logo {
+	width: 70px;
+	height: auto;
+}
+
+.university-name {
+	margin-top: .6cm;
+	padding-left: 70px;
+	display: flex;
+	font-size: 30px;
+	margin-left: 10px;
+	color: rgb(1, 29, 1);
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+.intto-name {
+	color: rgb(1, 29, 1);
+	padding-left: 80px;
+	font-size: 15px !important;
+}
+
+.intto {
+	margin-top: 0.5cm;
+	display: flex;
+	font-size: 20px;
+	margin-left: 10px;
+	color: white;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+@media screen and (min-width: 200px) {
+	.slideshow {
+		width: 100%;
+		flex: 0 0 50%;
+	}
+
+	.slideshow div {
+		width: 100%;
+		flex: 0 0 50%;
+	}
+
+	.show {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+
+	.content {
+		width: 50%;
+		flex: 0 0 50%;
+	}
+
+	.download {
+		font-size: smaller;
+	}
+
+	.university-name {
+		font-size: 25px;
+	}
+
+	.intto-name {
+		font-size: 15px;
+	}
+
+}
+
+.section {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* HORIZONTAL LINE -NOT YET DONE*/
+hr {
+	border: none;
+	border-top: 2px solid #ffe600;
+	margin: 0;
+	width: 100%;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	position: absolute;
+}
+
+/* LABEL */
+label {
+	display: block;
+	margin-top: 10px;
+}
+
+input {
+	border: none;
+	border-bottom: 2px solid #ffffff;
+	background-color: transparent;
+	padding: 5px;
+	width: 100%;
+	color: white;
+	margin-bottom: 10px;
+}
+
+input:focus {
+	outline: none;
+	border: none;
+	border-bottom: 2px solid #d42222;
+}
+
+.download {
+	background-color: white;
+	color: #013200 !important;
+	position: absolute;
+	bottom: 5vh;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 10px 20px;
+	background-color: #fff;
+	border-radius: 20px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+	color: white !important;
+	background-color: #013200;
+	border: white solid 0.5px;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
