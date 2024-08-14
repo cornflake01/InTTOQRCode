@@ -1,0 +1,54 @@
+const fs = require('fs');
+const path = require('path');
+const { google } = require('googleapis');
+
+const TOKEN_PATH = path.join(__dirname, 'token.json');
+const CREDENTIALS_PATH = path.join(__dirname, 'creds.json');
+
+const SCOPES = ['https://www.googleapis.com/auth/drive.file'];
+
+const loadCredentials = () => {
+  return JSON.parse(fs.readFileSync(CREDENTIALS_PATH));
+};
+
+const authorize = async () => {
+  const { client_secret, client_id, redirect_uris } = loadCredentials().installed;
+  const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+
+  try {
+    const token = fs.readFileSync(TOKEN_PATH);
+    oAuth2Client.setCredentials(JSON.parse(token));
+    return oAuth2Client;
+  } catch (err) {
+    console.error('No token found, please generate one first.');
+    process.exit(1);
+  }
+};
+
+const uploadFile = async (filePath, folderId) => {
+  const auth = await authorize();
+  const drive = google.drive({ version: 'v3', auth });
+
+  const fileMetadata = {
+    name: path.basename(filePath),
+    parents: [folderId], // Leave empty for My Drive
+  };
+  const media = {
+    mimeType: 'application/pdf', // Change to the appropriate MIME type
+    body: fs.createReadStream(filePath),
+  };
+
+  try {
+    const res = await drive.files.create({
+      requestBody: fileMetadata,
+      media: media,
+      fields: 'id',
+    });
+    console.log(`File uploaded successfully, File ID: ${res.data.id}`);
+  } catch (error) {
+    console.error('Error uploading file:', error.message);
+  }
+};
+
+// Example usage
+uploadFile('https://drive.google.com/drive/u/5/my-drive', '');

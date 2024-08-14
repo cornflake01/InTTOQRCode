@@ -1,0 +1,60 @@
+const { google } = require('googleapis');
+const path = require('path');
+const fs = require('fs');
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+// Load client secrets from a local file
+const credentials = JSON.parse(fs.readFileSync('credentials.json'));
+
+// Create an OAuth2 client with the loaded credentials
+const { client_secret, client_id, redirect_uris } = credentials.installed;
+const oAuth2Client = new google.auth.OAuth2(
+  client_id,
+  client_secret,
+  redirect_uris[0]
+);
+
+// Generate a URL for authorization
+const authUrl = oAuth2Client.generateAuthUrl({
+  access_type: 'offline',
+  scope: ['https://www.googleapis.com/auth/drive.file'],
+});
+
+app.get('/', (req, res) => {
+  res.send(`<a href="${authUrl}">Authorize this app</a>`);
+});
+
+app.get('/oauth2callback', async (req, res) => {
+  const code = req.query.code;
+  const { tokens } = await oAuth2Client.getToken(code);
+  oAuth2Client.setCredentials(tokens);
+  fs.writeFileSync('token.json', JSON.stringify(tokens));
+  res.send('Authorization successful! You can close this tab.');
+});
+
+// Set up Google Drive API
+const drive = google.drive({ version: 'v3', auth: oAuth2Client });
+
+const uploadFile = async () => {
+  const fileMetadata = {
+    name: 'photo.jpg',
+    parents: ['your-folder-id'] // Optional: ID of the folder to upload to
+  };
+  const media = {
+    mimeType: 'image/jpeg',
+    body: fs.createReadStream('photo.jpg'),
+  };
+  const res = await drive.files.create({
+    resource: fileMetadata,
+    media: media,
+    fields: 'id',
+  });
+  console.log('File Id:', res.data.id);
+};
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Authorize this app by visiting: ${authUrl}`);
+});
